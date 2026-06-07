@@ -1,0 +1,42 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+// Get a free hosted Postgres database in seconds: `npx create-db`
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+model User {
+  id          String   @id // Twitch ID
+  username    String   @unique
+  displayName String
+  avatarUrl   String?
+  createdAt   DateTime @default(now())
+  
+  settings    StreamerSettings?
+}
+
+model StreamerSettings {
+  id             String  @id @default(uuid())
+  userId         String  @unique
+  user           User    @relation(fields: [userId], references: [id], onDelete: Cascade)
+  primaryColor   String  @default("#00f0ff")
+  secondaryColor String  @default("#ff007f")
+  customLogoUrl  String?
+}
+
+model MatchHistory {
+  id           String   @id @default(uuid())
+  streamerAId  String
+  streamerBId  String
+  scoreFinalA  Int
+  scoreFinalB  Int
+  vainqueurId  String
+  date         DateTime @default(now())
+}

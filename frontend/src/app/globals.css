@@ -1,0 +1,50 @@
+@import "tailwindcss";
+
+@theme {
+  --color-neon-blue: #00f3ff;
+  --color-neon-pink: #ff00ea;
+  --color-dark-bg: #09090b;
+  --color-dark-surface: #18181b;
+
+  --animate-shake: shake 0.5s cubic-bezier(.36,.07,.19,.97) both;
+  @keyframes shake {
+    10%, 90% { transform: translate3d(-1px, 0, 0); }
+    20%, 80% { transform: translate3d(2px, 0, 0); }
+    30%, 50%, 70% { transform: translate3d(-4px, 0, 0); }
+    40%, 60% { transform: translate3d(4px, 0, 0); }
+  }
+}
+
+@layer base {
+  :root {
+    --background: #09090b;
+    --foreground: #ededed;
+  }
+}
+
+body {
+  color: var(--foreground);
+  background: var(--background);
+  font-family: Arial, Helvetica, sans-serif;
+  overflow-x: hidden;
+}
+
+.text-neon-blue {
+  color: var(--color-neon-blue);
+  text-shadow: 0 0 10px rgba(0, 243, 255, 0.5);
+}
+
+.text-neon-pink {
+  color: var(--color-neon-pink);
+  text-shadow: 0 0 10px rgba(255, 0, 234, 0.5);
+}
+
+.bg-neon-blue {
+  background-color: var(--color-neon-blue);
+  box-shadow: 0 0 15px rgba(0, 243, 255, 0.5);
+}
+
+.bg-neon-pink {
+  background-color: var(--color-neon-pink);
+  box-shadow: 0 0 15px rgba(255, 0, 234, 0.5);
+}
