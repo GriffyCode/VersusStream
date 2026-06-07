@@ -86,15 +86,18 @@ L'application génère des URLs de "Source Navigateur" à intégrer directement 
 5. Définissez la résolution (Généralement `1920` en largeur et `150` en hauteur pour le widget complet).
 6. Cochez la case *"Actualiser le cache de la page courante"*.
 
-### Les URLs Disponibles
-*(Remplacez `[roomId]` par l'ID de votre match)*
+### Les URLs Disponibles dans l'Application
 
-- 🔗 **Widget Complet (Recommandé)** : `https://votresite.com/overlay/[roomId]`
-  *Affiche la barre de score des deux joueurs, ainsi que le timer au centre. Parfait pour une configuration rapide en 1920x150.*
+*(Note : Si vous hébergez le projet sur Vercel ou un autre service, remplacez `http://localhost:3000` par votre nom de domaine en ligne, par ex. `https://mon-site.com`)*
 
-- 🔗 **Mode Modulaire** *(À venir selon configuration)* : 
-  - `/overlay/score-self` : Uniquement votre jauge de score.
-  - `/overlay/score-opponent` : Uniquement la jauge de l'adversaire.
-  - `/overlay/timer` : Uniquement le chronomètre central.
+1. ⚙️ **Tableau de Bord (Dashboard)** : `http://localhost:3000/dashboard`
+   - C'est ici que vous gérez vos duels, créez des salons, et invitez des adversaires.
+   
+2. 👤 **Page Publique du Streamer** : `http://localhost:3000/streamer/[username]`
+   - Profil affichant les statistiques et l'historique des matchs.
+
+3. 🔗 **Widget OBS (Overlay)** : `http://localhost:3000/overlay/[roomId]`
+   - Le widget complet affichant les scores et le timer.
+   - **Comment récupérer le lien ?** Actuellement, vous devez former l'URL manuellement avec l'ID du salon créé (ex: `http://localhost:3000/overlay/room_j7z8ddj`). À l'avenir, un bouton "Copier le lien du widget" sera disponible directement sur le Dashboard.
 
 *À la fin du temps imparti, les barres déclenchent automatiquement une animation lumineuse annonçant le vainqueur !*
