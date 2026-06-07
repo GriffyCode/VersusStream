@@ -21,13 +21,17 @@ export const createApp = () => {
   }));
   app.use(express.json());
 
+  // Indispensable pour que les cookies "secure" fonctionnent derrière le proxy de Render
+  app.set('trust proxy', 1);
+
   // Session
   app.use(session({
     secret: process.env.SESSION_SECRET || 'secret',
     resave: false,
     saveUninitialized: false,
     cookie: {
-      secure: process.env.NODE_ENV === 'production',
+      secure: true, // Obligatoire avec sameSite: 'none'
+      sameSite: 'none', // Indispensable pour le cross-domain (Vercel -> Render)
       maxAge: 1000 * 60 * 60 * 24 * 7 // 1 week
     }
   }));
